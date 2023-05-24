@@ -1,0 +1,66 @@
+body {
+  background-color: #f5e6f7;
+  background-image:  radial-gradient(#784300 1px, transparent 1px), radial-gradient(#784300 1px, #f5e6f7 1px);
+  background-size: 24px 24px;
+  background-position: 0 0,12px 12px;
+}
+
+h1 {
+  color: #784300;
+  font-family: 'Sniglet', cursive;
+  font-size: 90px;
+}
+
+h3 {
+  color: #784300;
+  font-family: 'Sniglet', cursive;
+  font-size: 25px;
+}
+
+.container {
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 1130px;
+  height: 150px;
+  background-color: #FFFBDC;
+  border: 5px solid #784300;
+  border-radius: 50px;
+  text-align: center;
+}
+
+.birthdays {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  min-width: 1130px;
+  background-color: #FFFBDC;
+  border: 5px solid #784300;
+  border-radius: 50px;
+  height: 400px;
+}
+
+.birthdayrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+}
+
