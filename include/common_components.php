@@ -12,14 +12,6 @@
       </style>
       <title>$pageTitle</title>
     </head>
-      <body>
-        <div class='homesection' id='home'>
-            <ul>
-              <li><p class='navbarbuttons'><a href='#home'>Home</a></p></li>
-              <li><p class='navbarbuttons'>News</p></li>
-              <li><p class='navbarbuttons'><a href='#contact'>Contact</a></p></li>
-              <li><p class='navbarbuttons'>About</p></li>
-            </ul>
     ";
   }
 
@@ -32,12 +24,15 @@
 
   function echoPost($postInfo, $title, $body) {
     echo "
-      <div class='blogparent'>
+    <div class='blogparent'>
       <h1 class='blogtitle'>
         $postInfo[$title]
       </h1>
       <p class='blogcontents'>
         $postInfo[$body]
+      </p>
+      <p style='text-align: center'>
+        <a href='index.php'>back home</a>
       </p>
     </div>
     ";
@@ -54,3 +49,31 @@
     </div>
     ";
   }
+
+  function echoCommentsInput($errors, $comment) {
+    echo "
+    <div class='comments'>
+      <h2>leave a comment</h2>
+    ";
+
+    if(isset($errors[$comment])){
+      echo "
+        <div style='color:red; font-weight: bold;'>
+          $errors[$comment]
+        </div>
+      ";
+    }
+
+    echo "
+      <form action = '' method = 'POST'>
+      <p>Name:<br></p>
+      <input type='text' name='name' style = 'width: 100%; background-color: #d9d9d9c2; border: none'>
+      <p>Comment:<br></p>
+      <textarea name='body' style = 'width: 100%; height: 5%; background-color: #d9d9d9c2; border: none'></textarea><br>
+      <div style='margin-top: 2%; margin-bottom: 2%;'><input type='submit' name='isSubmitted' class='submitbutton'><br></div>
+      </form>
+    </div>
+    ";
+  }
+
+
