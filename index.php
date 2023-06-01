@@ -34,14 +34,17 @@
         </div>  
         <div class="contactsection" id="contact">
           <div class="icons"> 
-            <span>
+            <span class="iconcaptions">
               <img src="github icon.png" alt="github icon" width="70" height="70">
+              <p><a href="https://github.com/graceleeLACRM">GitHub</a></p>
             </span>
-            <span>
+            <span class="iconcaptions">
               <img src="linkedin icon.png" alt="linkedin icon" width="70" height="70">
+              <p><a href="https://linkedin.com/in/eun1229">LinkedIn</a></p>
             </span>
-            <span>
+            <span class="iconcaptions">
               <img src="mail icon.png" alt="mail icon" width="70" height="70">
+              <p><a href="mailto: eunhae.l@wustl.edu">email</a></p>
             </span>
           </div>
         </div>

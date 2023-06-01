@@ -189,6 +189,12 @@ summary {
   align-content: center;
 }
 
+.iconcaptions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .blogparent {
   display: flex;
   flex-direction: column;
