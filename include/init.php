@@ -8,3 +8,4 @@
   include('include/posts.php');
   include('include/helper_function.php');
   include('include/comments.php');
+  include('user_functions.php');
