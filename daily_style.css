@@ -1,0 +1,54 @@
+h2 {
+  font-size: medium;
+}
+
+p {
+  font-size: small;
+}
+
+label {
+  font-size: small;
+}
+
+ul {
+  list-style-type: none;
+}
+
+input[type=checkbox]:checked + label{
+  text-decoration: line-through;
+}
+
+.todosection {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 5%;
+  font-family: 'Inter', sans-serif;
+  color: #5C394B;
+  row-gap: 10px;
+}
+
+.todoheader {
+  background-color: #EBDED9;
+  text-align: center;
+}
+
+.todolist {
+  display: flex;
+  flex-direction: column;
+  background-color: #EBDED9;
+}
+
+.todoform {
+  font-size: small;
+  background-color: #EBDED9;
+  padding: 3%
+}
+
+input[type=submit] {
+  background: transparent;
+  color: #5C394B;
+  border-color: #5C394B;
+  border-style: solid;
+  border-width: 1px;
+}
