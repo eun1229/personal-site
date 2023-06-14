@@ -20,23 +20,17 @@
     ) -> fetchAll();    
   }
 
-  function verifyTaskInput($errors) {
-    if (isset($_REQUEST['entered'])) {
-      if ($_REQUEST['task'] == '') {
-        global $errors;
-        $errors['comment'] = "please enter a task before submitting";
+  function displayAllTasks($tasks) {
+    foreach ($tasks as $task){
+      $completedStyle = '';
+      $checked = '';
+      if ($task['completed'] == 1) {
+        $completedStyle = 'text-decoration: line-through';
+        $checked = 'checked';
       }
-      if (sizeof($errors) === 0) {
-        insertTask($_REQUEST['task']);
-        header('location: ? userId = $_REQUEST[userId]');
-      }
-    }
-  }
-
-  function emptyTaskMessage($errors) {
-    if (isset($errors['comment'])) {
-      echo "
-        $errors[comment]<br>
-      ";
+      echo "<li><label><input type='checkbox' onclick = 'updateTask($task[taskId], 1)' $checked>
+      <p style = '$completedStyle'>$task[task]</p>
+      <p style = 'margin-left: auto'><a href='javascript:void(0)' onclick = 'deleteTask($task[taskId], 1)'>x</a></p>
+      </label></li>";
     }
   }
