@@ -8,10 +8,10 @@
     foreach ($names as $value) {
       if ($_REQUEST[$value] == '') {
         $emptyerrors['comment'] = $value." required";
+        echo $emptyerrors['comment'];
         break;
       }
     }
-  }
 
   if (sizeof($emptyerrors) === 0) {
     if ($_REQUEST['password'] != $_REQUEST['repeatpassword']) {
@@ -25,9 +25,10 @@
     }
     else {
       insertUser($_REQUEST['name'], $_REQUEST['lastname'], $_REQUEST['username'], $_REQUEST['password'], $_REQUEST['email']);
-      header('location: session_test2.php');
+      header('location: login.php');
     }
   }
+}
 ?>
 
 <form action="" method="post">

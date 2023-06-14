@@ -1,7 +1,7 @@
 <?php
   include_once('include/init.php');
 
-  $thisUser = getUser($_SESSION['userId']);
+  $thisUser = verifyLogin()
 
   if (isset($_REQUEST['logout'])) {
     session_destroy();

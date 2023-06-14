@@ -1,13 +1,13 @@
 <?php
-  include('include/init.php');
+  include_once('include/init.php');
   validateUser();
   if (isset($_SESSION['userId'])) {
-    header('location:homepage.php');
+    header('location:session_test.php');
     exit;
   }
 ?>
 
-<form action='login.php' method='post'>
+<form action='session_test2.php' method='post'>
 	<h2>enter login info</h2>
 	username: <input type='text' name='username'/> <br/><br/>
 
