@@ -1,12 +1,7 @@
 <?php
   include('include/init.php');
-    db_Query("
-    INSERT INTO daily_task_list (task, userId)
-    VALUES (:task, 1)", 
-    [
-      'task' => $_REQUEST['taskbody']
-    ]
-    );
+    insertTask($_REQUEST['taskbody']);
     $tasks = getAllTasks($_REQUEST['userId']);
-    displayAllTasks($tasks);
+    $last_inserted =  count($tasks) - 1;
+    displayTask($tasks, $last_inserted);
 ?>

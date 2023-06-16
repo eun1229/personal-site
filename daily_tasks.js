@@ -17,19 +17,19 @@
     }
     else {
       const url = '/add_task.php';
-      let data = new URLSearchParams();
-      data.append('taskbody', document.getElementById('task').value);
-      data.append('userId', userId);
+      let newTaskData = new URLSearchParams();
+      newTaskData.append('taskbody', document.getElementById('task').value);
+      newTaskData.append('userId', userId);
       const options = {
         method: 'POST',
-        body: data,
+        body: newTaskData,
       };
       fetch (url, options)
       .then(response => {
         return response.text();
       })
-      .then(data => {
-        document.getElementById('todolist').innerHTML = data;
+      .then(insertedTask => {
+        document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask);
       })
       .catch(error => {
         console.error('Error: ', error);
@@ -40,19 +40,19 @@
 
   function updateTask(taskId, userId) {
     const url = '/update_task.php';
-    let data = new URLSearchParams();
-    data.append('taskId', taskId);
-    data.append('userId', userId);
+    let updatedTaskData = new URLSearchParams();
+    updatedTaskData.append('taskId', taskId);
+    updatedTaskData.append('userId', userId);
     const options = {
       method: 'POST',
-      body: data,
+      body: updatedTaskData,
     };
     fetch(url, options)
     .then(response => {
       return response.text();
     })
-    .then(data => {
-      document.getElementById('todolist').innerHTML = data;
+    .then(updatedTask => {
+      document.getElementById(taskId.toString().concat('update')).innerHTML = updatedTask;
     })
     .catch(error => {
       console.error('Error: ', error);
@@ -61,19 +61,19 @@
 
   function deleteTask(taskId, userId) {
     const url = '/delete_task.php';
-    let data = new URLSearchParams();
-    data.append('taskId', taskId);
-    data.append('userId', userId);
+    let deletedTaskData = new URLSearchParams();
+    deletedTaskData.append('taskId', taskId);
+    deletedTaskData.append('userId', userId);
     const options = {
       method: 'POST',
-      body: data,
+      body: deletedTaskData,
     };
     fetch(url, options)
     .then(response => {
       return response.text();
     })
-    .then(data => {
-      document.getElementById('todolist').innerHTML = data;
+    .then(deletedTask => {
+      document.getElementById(deletedTask).remove();
     })
     .catch(error => {
       console.error('Error: ', error);

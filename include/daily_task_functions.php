@@ -9,6 +9,27 @@
     );
   }
 
+  function updateTask($task_id) {
+    db_Query("
+    UPDATE daily_task_list 
+    SET completed = 1
+    WHERE taskId = :task_id",
+    [
+      'task_id' => $task_id
+    ]
+    );
+  }
+
+  function deleteTask($task_id) {
+    db_Query("
+    DELETE FROM daily_task_list
+    WHERE taskId = :task_id",
+    [
+      'task_id' => $task_id
+    ]
+    );
+  }
+
   function getAllTasks($userId) {
     return db_Query("
     SELECT * 
@@ -28,9 +49,23 @@
         $completedStyle = 'text-decoration: line-through';
         $checked = 'checked';
       }
-      echo "<li><label><input type='checkbox' onclick = 'updateTask($task[taskId], 1)' $checked>
+      echo "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], 1)' $checked>
       <p style = '$completedStyle'>$task[task]</p>
       <p style = 'margin-left: auto'><a href='javascript:void(0)' onclick = 'deleteTask($task[taskId], 1)'>x</a></p>
       </label></li>";
     }
+  }
+
+  function displayTask($allTasks, $selectedId) {
+    $task = $allTasks[$selectedId];
+    $completedStyle = '';
+    $checked = '';
+    if ($task['completed'] == 1) {
+      $completedStyle = 'text-decoration: line-through';
+      $checked = 'checked';
+    }
+    echo "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], 1)' $checked>
+    <p style = '$completedStyle'>$task[task]</p>
+    <p style = 'margin-left: auto'><a href='javascript:void(0)' onclick = 'deleteTask($task[taskId], 1)'>x</a></p>
+    </label></li>";
   }
