@@ -51,7 +51,7 @@
       }
       echo "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], 1)' $checked>
       <p style = '$completedStyle'>$task[task]</p>
-      <p style = 'margin-left: auto'><a href='javascript:void(0)' onclick = 'deleteTask($task[taskId], 1)'>x</a></p>
+      <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], 1)', class = 'closenav', style = 'border: none'>x</button></p>
       </label></li>";
     }
   }
@@ -66,6 +66,6 @@
     }
     echo "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], 1)' $checked>
     <p style = '$completedStyle'>$task[task]</p>
-    <p style = 'margin-left: auto'><a href='javascript:void(0)' onclick = 'deleteTask($task[taskId], 1)'>x</a></p>
+    <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], 1)', class = 'closenav', style = 'border: none'>x</button></p>
     </label></li>";
   }
