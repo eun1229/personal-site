@@ -1,0 +1,47 @@
+h2 {
+  font-size: medium;
+}
+
+p {
+  font-size: small;
+  margin-bottom: 5px;
+}
+
+.loginform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  color: #5C394B;
+}
+
+input[type=submit] {
+  background: transparent;
+  color: #5C394B;
+  border-color: #5C394B;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.signupbutton {
+  background: transparent;
+  color: #5C394B;
+  border-color: #5C394B;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.signupform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  gap: 5px;
+  color: #5C394B;
+}

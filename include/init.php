@@ -6,3 +6,5 @@
   include('include/db_query.php');  
   include('include/daily_task_functions.php');
   include('include/helper.php');
+  include('include/login_functions.php');
+  include('include/signup_functions.php');

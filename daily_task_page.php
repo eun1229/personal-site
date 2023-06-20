@@ -1,6 +1,13 @@
 <?php
   include_once('include/init.php');
-  $tasks = getAllTasks(1); //userId hardcoded 1 for now
+  $thisUser = verifyLogin();
+  $userId = $thisUser['userId'];
+  if (isset($_REQUEST['logout'])) {
+    session_destroy();
+    header('location:index.php');
+    exit;
+  }
+  $tasks = getAllTasks($userId); 
 ?>
 
 <html>
@@ -15,6 +22,9 @@
   <body>
     <div id = "navbar" class = "navbar">
       <button class="closenav" onclick = "closeNav('navbar')">x</button>
+      <form action="" method="post" class = "logoutform">
+        <input type="submit" value = "logout" name="logout"/>
+      </form>
     </div>
     <div id = "main" class = "main">
       <button id = "openbutton" class = "opennav" onclick = "openNav('navbar')">&#9776</button>
@@ -23,12 +33,12 @@
         <div class = "todolist">
           <ul id = "todolist">
             <?php
-              displayAllTasks($tasks);
+              displayAllTasks($tasks, $userId);
             ?>
           </ul>
         </div>
         <div class = "todoform">
-          <form id = "todoform" action = "" method = "POST" style = "margin: 0" onsubmit = "insertTask(event, 1)">
+          <form id = "todoform" action = "" method = "POST" style = "margin: 0" onsubmit = "insertTask(event, <?php echo $userId;?>)">
           <label for = "task">enter a task:</label>
           <input id = "task" type = "text" name = "task"><br>
           <p id = "emptytaskmessage" class = "emptymessage">please enter a task before submitting</p>

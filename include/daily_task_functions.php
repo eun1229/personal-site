@@ -1,10 +1,11 @@
 <?php
-  function insertTask($task) {
+  function insertTask($task, $userId) {
     db_Query("
     INSERT INTO daily_task_list (task, userId)
-    VALUES (:task, 1)", 
+    VALUES (:task, :userId)", 
     [
-      'task' => $task
+      'task' => $task,
+      'userId' => $userId
     ]
     );
   }
@@ -41,7 +42,7 @@
     ) -> fetchAll();    
   }
 
-  function displayAllTasks($tasks) {
+  function displayAllTasks($tasks, $userId) {
     foreach ($tasks as $task){
       $completedStyle = '';
       $checked = '';
@@ -49,14 +50,14 @@
         $completedStyle = 'text-decoration: line-through';
         $checked = 'checked';
       }
-      echo "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], 1)' $checked>
+      echo "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], $userId)' $checked>
       <p style = '$completedStyle'>$task[task]</p>
-      <p style = 'margin-left: auto'><a href='javascript:void(0)' onclick = 'deleteTask($task[taskId], 1)'>x</a></p>
+      <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], $userId)' class = 'closenav', style = 'border: none'>x</button></p>
       </label></li>";
     }
   }
 
-  function displayTask($allTasks, $selectedId) {
+  function displayTask($allTasks, $selectedId, $userId) {
     $task = $allTasks[$selectedId];
     $completedStyle = '';
     $checked = '';
@@ -64,8 +65,8 @@
       $completedStyle = 'text-decoration: line-through';
       $checked = 'checked';
     }
-    echo "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], 1)' $checked>
+    echo "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], $userId)' $checked>
     <p style = '$completedStyle'>$task[task]</p>
-    <p style = 'margin-left: auto'><a href='javascript:void(0)' onclick = 'deleteTask($task[taskId], 1)'>x</a></p>
+    <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], $userId)' class = 'closenav', style = 'border: none'>x</button></p>
     </label></li>";
   }

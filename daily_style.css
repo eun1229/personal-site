@@ -90,3 +90,11 @@ input[type=submit] {
   margin: 1px;
   color: red;
 }
+
+.logoutform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
