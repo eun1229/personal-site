@@ -11,24 +11,45 @@
   }
 
   function updateTask($task_id) {
-    db_Query("
-    UPDATE daily_task_list 
-    SET completed = 1
-    WHERE taskId = :task_id",
-    [
-      'task_id' => $task_id
-    ]
-    );
+    if (checkUser($task_id)) {
+      db_Query("
+      UPDATE daily_task_list 
+      SET completed = 1
+      WHERE taskId = :task_id",
+      [
+        'task_id' => $task_id
+      ]
+      );
+    }
   }
 
   function deleteTask($task_id) {
-    db_Query("
-    DELETE FROM daily_task_list
+    if (checkUser($task_id)) {
+      db_Query("
+      DELETE FROM daily_task_list
+      WHERE taskId = :task_id",
+      [
+        'task_id' => $task_id
+      ]
+      );
+    }
+  }
+
+  function checkUser($taskId) {
+    $taskUserId = db_Query("
+    SELECT userId
+    FROM daily_task_list
     WHERE taskId = :task_id",
     [
-      'task_id' => $task_id
+      'task_id' => $taskId
     ]
-    );
+    ) -> fetch();
+    if ($_SESSION['userId'] == $taskUserId['userId']) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   function getAllTasks($userId) {
