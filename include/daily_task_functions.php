@@ -1,13 +1,15 @@
 <?php
   function insertTask($task, $userId) {
-    db_Query("
-    INSERT INTO daily_task_list (task, userId)
-    VALUES (:task, :userId)", 
-    [
-      'task' => $task,
-      'userId' => $userId
-    ]
-    );
+    if ($_SESSION['userId'] == $_REQUEST['userId']) {
+      db_Query("
+      INSERT INTO daily_task_list (task, userId)
+      VALUES (:task, :userId)", 
+      [
+        'task' => $task,
+        'userId' => $userId
+      ]
+      );
+    }
   }
 
   function updateTask($task_id) {
