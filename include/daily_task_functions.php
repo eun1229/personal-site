@@ -1,33 +1,57 @@
 <?php
-  function insertTask($task) {
-    db_Query("
-    INSERT INTO daily_task_list (task, userId)
-    VALUES (:task, 1)", 
-    [
-      'task' => $task
-    ]
-    );
+  function insertTask($task, $userId) {
+    if ($_SESSION['userId'] == $_REQUEST['userId']) {
+      db_Query("
+      INSERT INTO daily_task_list (task, userId)
+      VALUES (:task, :userId)", 
+      [
+        'task' => $task,
+        'userId' => $userId
+      ]
+      );
+    }
   }
 
   function updateTask($task_id) {
-    db_Query("
-    UPDATE daily_task_list 
-    SET completed = 1
-    WHERE taskId = :task_id",
-    [
-      'task_id' => $task_id
-    ]
-    );
+    if (checkUser($task_id)) {
+      db_Query("
+      UPDATE daily_task_list 
+      SET completed = 1
+      WHERE taskId = :task_id",
+      [
+        'task_id' => $task_id
+      ]
+      );
+    }
   }
 
   function deleteTask($task_id) {
-    db_Query("
-    DELETE FROM daily_task_list
+    if (checkUser($task_id)) {
+      db_Query("
+      DELETE FROM daily_task_list
+      WHERE taskId = :task_id",
+      [
+        'task_id' => $task_id
+      ]
+      );
+    }
+  }
+
+  function checkUser($taskId) {
+    $taskUserId = db_Query("
+    SELECT userId
+    FROM daily_task_list
     WHERE taskId = :task_id",
     [
-      'task_id' => $task_id
+      'task_id' => $taskId
     ]
-    );
+    ) -> fetch();
+    if ($_SESSION['userId'] == $taskUserId['userId']) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   function getAllTasks($userId) {
@@ -41,7 +65,7 @@
     ) -> fetchAll();    
   }
 
-  function displayAllTasks($tasks) {
+  function displayAllTasks($tasks, $userId) {
     foreach ($tasks as $task){
       $completedStyle = '';
       $checked = '';
@@ -49,14 +73,14 @@
         $completedStyle = 'text-decoration: line-through';
         $checked = 'checked';
       }
-      echo "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], 1)' $checked>
+      echo "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], $userId)' $checked>
       <p style = '$completedStyle'>$task[task]</p>
-      <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], 1)', class = 'closenav', style = 'border: none'>x</button></p>
+      <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], $userId)' class = 'closenav', style = 'border: none'>x</button></p>
       </label></li>";
     }
   }
 
-  function displayTask($allTasks, $selectedId) {
+  function displayTask($allTasks, $selectedId, $userId) {
     $task = $allTasks[$selectedId];
     $completedStyle = '';
     $checked = '';
@@ -64,8 +88,8 @@
       $completedStyle = 'text-decoration: line-through';
       $checked = 'checked';
     }
-    echo "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], 1)' $checked>
+    echo "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], $userId)' $checked>
     <p style = '$completedStyle'>$task[task]</p>
-    <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], 1)', class = 'closenav', style = 'border: none'>x</button></p>
+    <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], $userId)' class = 'closenav', style = 'border: none'>x</button></p>
     </label></li>";
   }
