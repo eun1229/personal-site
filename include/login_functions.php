@@ -53,4 +53,15 @@ function verifyLogin() {
   }
 }
 
+function updateLast($userId, $week) {
+  db_Query ("
+  UPDATE user 
+  SET lastAdded = :week
+  WHERE userId = :userId",
+  [
+    'userId' => $userId,
+    'week' => $week
+  ]
+  );
+}
 ?>

@@ -10,6 +10,20 @@
     document.getElementById("openbutton").style.visibility = "visible";
   }
 
+  function showRecurOptions() {
+    checkbox = document.getElementById("recuroption");
+    label = document.getElementById("recurlabel");
+    options = document.getElementById("recurday");
+    if (checkbox.checked == true){
+      options.style.display = "block";
+      label.style.display = "block";
+    }
+    else {
+      options.style.display = "none";
+      label.style.display = "none";
+    }
+  }
+
   function insertTask(event, userId){
     event.preventDefault();
     if (document.getElementById('task').value == "") {

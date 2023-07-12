@@ -25,6 +25,17 @@ input[type=submit] {
   border-width: 1px;
 }
 
+input[type=checkbox] {
+  vertical-align: middle;
+  position: relative;
+  bottom: 1px;
+}
+
+.recurform{
+  display: flex;
+  align-items: center;
+}
+
 .navbar {
   background-color: #EBDED9;
   height: 100%;

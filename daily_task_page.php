@@ -2,12 +2,18 @@
   include_once('include/init.php');
   $thisUser = verifyLogin();
   $userId = $thisUser['userId'];
+  $lastAdded = $thisUser['lastAdded'];
   if (isset($_REQUEST['logout'])) {
     session_destroy();
     header('location:index.php');
     exit;
   }
-  $tasks = getAllTasks($userId); 
+  $tasks = getAllTasks($userId, "daily_task_list"); 
+  $recurringTasks = getAllTasks($userId, "recurring_task_rule");
+  if ($lastAdded != date('W')) {
+      insertRecurringToDaily();
+      updateLast($userId, date('W'));
+  }
 ?>
 
 <html>
