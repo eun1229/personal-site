@@ -98,3 +98,26 @@ input[type=submit] {
   align-items: center;
   text-align: center;
 }
+
+.viewrecurring {
+  margin-top: 50px;
+}
+
+.listrecurring {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.gptform {
+  display: flex;
+  flex-direction: column;
+  background-color: #EBDED9;
+  width: 30%;
+  margin: 5%;
+}
+
+.mainsections {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

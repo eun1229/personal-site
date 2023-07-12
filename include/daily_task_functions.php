@@ -12,11 +12,52 @@
     }
   }
 
-  function updateTask($task_id) {
-    if (checkUser($task_id)) {
+  // function updateTask($task_id) {
+  //   if (checkUser($task_id)) {
+  //     db_Query("
+  //     INSERT INTO recurring_task_rule (task, userId, recur_day)
+  //     VALUES (:task, :userId, :day)", 
+  //     [
+  //       'task' => $task,
+  //       'userId' => $userId,
+  //       'day' => $day
+  //     ]
+  //     );
+  //   }
+  // }
+
+  function insertRecurringToDaily() {
+    $recurringTasks = db_Query("
+    SELECT * 
+    FROM recurring_task_rule") -> fetchAll();
+    foreach ($recurringTasks as $task) {
       db_Query("
-      UPDATE daily_task_list 
-      SET completed = 1
+      INSERT INTO daily_task_list
+      (userId, task, recurs, recur_day) 
+      VALUES (:userId, :task, 1, :recur_day)",
+      [
+        'userId' => $task['userId'],
+        'task' => $task['task'],
+        'recur_day' => $task['recur_day']
+      ]
+      );
+    }
+  }
+
+  function displayAllRecurring($tasks, $userId) {
+    foreach ($tasks as $task) {
+      echo"<li id = '$task[taskId]recur' style = 'list-style-type: none'><label>
+      <p >$task[task]</p>
+      <p style = 'margin-left: auto'><button onclick = 'deleteRecurringTask($task[taskId], $userId)' class = 'closenav', style = 'border: none'>x</button></p>
+      </label></li>";
+    }
+  }
+
+  function updateTask($task_id, $dbName) {
+    if (checkUser($task_id, $dbName)) {
+      db_Query("
+      UPDATE $dbName
+      SET completed = NOT completed
       WHERE taskId = :task_id",
       [
         'task_id' => $task_id

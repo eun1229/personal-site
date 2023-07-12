@@ -16,25 +16,56 @@
       document.getElementById("emptytaskmessage").style.display = "block";
     }
     else {
+      const recurdays = [];
       const url = '/add_task.php';
       let newTaskData = new URLSearchParams();
       newTaskData.append('taskbody', document.getElementById('task').value);
       newTaskData.append('userId', userId);
-      const options = {
-        method: 'POST',
-        body: newTaskData,
-      };
-      fetch (url, options)
-      .then(response => {
-        return response.text();
-      })
-      .then(insertedTask => {
-        document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask);
-      })
-      .catch(error => {
-        console.error('Error: ', error);
-      });
-      document.getElementById('todoform').reset();
+      newTaskData.append('recurs', document.getElementById('recuroption').checked);
+      if (document.getElementById('recuroption').checked) {
+        days = document.getElementsByName('recurday');
+        for (let i = 0; i < days.length; i++){
+          if (days[i].checked) {
+            recurdays.push(days[i].value);
+          }
+        }
+        newTaskData.append('days', recurdays);
+        const options = {
+          method: 'POST',
+          body: newTaskData,
+        };
+        fetch (url, options)
+        .then(response => {
+          return response.json();
+        })
+        .then(insertedTask => {
+          if (recurdays.includes(insertedTask[0])) {
+            document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask[2]);
+          }
+          document.getElementById('listrecurring').insertAdjacentHTML('beforeend', insertedTask[1]);
+        })
+        .catch(error => {
+          console.error('Error: ', error);
+        });
+        document.getElementById('todoform').reset();
+      }
+      else {
+        const options = {
+          method: 'POST',
+          body: newTaskData,
+        };
+        fetch (url, options)
+        .then(response => {
+          return response.json();
+        })
+        .then(insertedTask => {
+          document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask[2]);
+        })
+        .catch(error => {
+          console.error('Error: ', error);
+        });
+        document.getElementById('todoform').reset();
+      }
     }
   }
 
@@ -78,4 +109,79 @@
     .catch(error => {
       console.error('Error: ', error);
     });    
+  }
+
+  function showAllRecurringTasks() {
+    checkbox = document.getElementById("showAllRecurring");
+    recurringlist = document.getElementById("listrecurring");
+    if (checkbox.checked == true){
+      recurringlist.style.display = "block";
+    }
+    else {
+      recurringlist.style.display = "none";
+    }
+  }
+
+  function deleteRecurringTask(taskId, userId) {
+    const url = '/delete_recurring_task.php';
+    let deletedRecurringTaskData = new URLSearchParams();
+    deletedRecurringTaskData.append('recurringTaskId', taskId);
+    deletedRecurringTaskData.append('recurringUserId', userId);
+    const options = {
+      method: 'POST',
+      body: deletedRecurringTaskData,
+    };
+    fetch(url, options)
+    .then(response => {
+      return response.text();
+    })
+    .then(deletedRecurringTask => {
+      document.getElementById(deletedRecurringTask).remove();
+    })
+    .catch(error => {
+      console.error('Error: ', error);
+    });    
+  }
+
+  function updateRecurringTask(taskId, userId) {
+    const url = '/update_recurring_task.php';
+    let updatedRecurringTaskData = new URLSearchParams();
+    updatedRecurringTaskData.append('taskId', taskId);
+    updatedRecurringTaskData.append('userId', userId);
+    const options = {
+      method: 'POST',
+      body: updatedRecurringTaskData,
+    };
+    fetch(url, options)
+    .then(response => {
+      return response.text();
+    })
+    .then(updatedRecurringTask => {
+      document.getElementById(taskId.toString().concat('recur')).innerHTML = updatedRecurringTask;
+    })
+    .catch(error => {
+      console.error('Error: ', error);
+    });
+  }
+
+  function generateTaskFromInput(event) {
+    event.preventDefault();
+    console.log('here');
+    const url = '/gpt.php';
+    let inputtedGoal = new URLSearchParams();
+    inputtedGoal.append('goal', document.getElementById('goal').value);
+    const options = {
+      method: 'POST',
+      body: inputtedGoal,
+    };
+    fetch(url, options)
+    .then(response => {
+      return response.text();
+    })
+    .then(steps => {
+      document.getElementById('generatedTasks').innerHTML = steps;
+    })
+    .catch(error => {
+      console.error('Error: ', error);
+    });
   }

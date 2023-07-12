@@ -1,6 +1,6 @@
 <?php
   include('include/init.php');
-  updateTask($_REQUEST['taskId']);
+  updateTask($_REQUEST['taskId'], 'daily_task_list');
   
   $tasks = getAllTasks($_REQUEST['userId']);
   $ids = array_column($tasks, 'taskId');
