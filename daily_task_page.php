@@ -27,13 +27,11 @@
   </head>
   <body>
     <div id = "navbar" class = "navbar">
-      <button class="closenav" onclick = "closeNav('navbar')">x</button>
       <form action="" method="post" class = "logoutform">
         <input type="submit" value = "logout" name="logout"/>
       </form>
     </div>
     <div id = "main" class = "main">
-      <button id = "openbutton" class = "opennav" onclick = "openNav('navbar')">&#9776</button>
       <div class = "mainsections">
         <div class = "todosection">
           <div class = "todoheader"><h2>today's to-do</h2></div>
@@ -45,7 +43,7 @@
             </ul>
           </div>
           <div class = "todoform">
-            <form id = "todoform" action = "" method = "POST" style = "margin: 0" onsubmit = "insertTask(event, <?php echo $userId;?>)">
+            <form id = "todoform" action = "" method = "POST" style = "margin: 0" onsubmit = "insertTask(event, <?php echo $userId;?>, true)">
             <label for = "task">enter a task:</label>
             <input id = "task" type = "text" name = "task"><br>
             <div class = "recurform">
@@ -76,11 +74,18 @@
           </div>
         </div>
         <div class='gptform'>
-          <form id='goalform' action='' method='POST' onsubmit='generateTaskFromInput(event)'>
+          <h2><center>generate steps to achieve a goal</center></h2>
+          <p style='margin-left: 10%; margin-right: 10%'>enter a goal you would like to achieve in the box below</p>
+          <form id='goalform' action='' method='POST' onsubmit='generateTaskFromInput(event)' class='todoform'>
             <input id = 'goal' type = "text" name = 'goal'>
             <input type = 'submit' name='goalentered' value='enter'>
           </form>
-          <p id='generatedTasks'></p>
+          <form id = 'generated' action='' method='POST' onsubmit='insertTask(event, <?php echo $userId;?>, false)'>
+            <p id='generatedTask0'><input type = 'hidden' name = 'taskbody0'></p>
+            <p id='generatedTask1'><input type = 'hidden' name = 'taskbody1'></p>
+            <p id='generatedTask2'><input type = 'hidden' name = 'taskbody2'></p>
+            <input type = 'submit' class='generatedbutton' id='generatedbutton' name='generatedentered' value='add to daily list'>
+          </form>
         </div>
       </div>
     </div>

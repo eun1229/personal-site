@@ -48,7 +48,7 @@
     foreach ($tasks as $task) {
       echo"<li id = '$task[taskId]recur' style = 'list-style-type: none'><label>
       <p >$task[task]</p>
-      <p style = 'margin-left: auto'><button onclick = 'deleteRecurringTask($task[taskId], $userId)' class = 'closenav', style = 'border: none'>x</button></p>
+      <p style = 'margin-left: auto'><button onclick = 'deleteRecurringTask($task[taskId], $userId)' class = 'delete', style = 'border: none'>x</button></p>
       </label></li>";
     }
   }
@@ -122,7 +122,7 @@
       }
       echo "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], $userId)' $checked>
       <p style = '$completedStyle'>$task[task]</p>
-      <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], $userId)' class = 'closenav', style = 'border: none'>x</button></p>
+      <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], $userId)' class = 'delete', style = 'border: none'>x</button></p>
       </label></li>";
     }
   }
@@ -137,7 +137,7 @@
     }
     return "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], $userId)' $checked>
     <p style = '$completedStyle'>$task[task]</p>
-    <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], $userId)' class = 'closenav', style = 'border: none'>x</button></p>
+    <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], $userId)' class = 'delete', style = 'border: none'>x</button></p>
     </label></li>";
   }
 
@@ -147,6 +147,6 @@
     $checked = '';
     return "<li id = '$task[taskId]recur'><label>
     <p style = '$completedStyle'>$task[task]</p>
-    <p style = 'margin-left: auto'><button onclick = 'deleteRecurringTask($task[taskId], $userId)' class = 'closenav', style = 'border: none'>x</button></p>
+    <p style = 'margin-left: auto'><button onclick = 'deleteRecurringTask($task[taskId], $userId)' class = 'delete', style = 'border: none'>x</button></p>
     </label></li>";
   }

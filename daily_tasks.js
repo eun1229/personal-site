@@ -24,19 +24,20 @@
     }
   }
 
-  function insertTask(event, userId){
+  function insertTask(event, userId, manual){
     event.preventDefault();
-    if (document.getElementById('task').value == "") {
+    if (document.getElementById('task').value == "" && manual) {
       document.getElementById("emptytaskmessage").style.display = "block";
     }
     else {
-      const recurdays = [];
+      let recurdays = [];
       const url = '/add_task.php';
       let newTaskData = new URLSearchParams();
       newTaskData.append('taskbody', document.getElementById('task').value);
       newTaskData.append('userId', userId);
       newTaskData.append('recurs', document.getElementById('recuroption').checked);
-      if (document.getElementById('recuroption').checked) {
+      newTaskData.append('manual', manual);
+      if (document.getElementById('recuroption').checked && manual) {
         days = document.getElementsByName('recurday');
         for (let i = 0; i < days.length; i++){
           if (days[i].checked) {
@@ -62,6 +63,55 @@
           console.error('Error: ', error);
         });
         document.getElementById('todoform').reset();
+      }
+      else if(!manual) {
+        recurdays = ['0','1', '2', '3', '4', '5'];
+        newTaskData.append('taskbody', document.getElementById('generatedTask0').textContent);
+        const options = {
+          method: 'POST',
+          body: newTaskData,
+        };
+        fetch (url, options)
+        .then(response => {
+          return response.json();
+        })
+        .then(insertedTask => {
+          if (recurdays.includes(insertedTask[0])) {
+            document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask[2]);
+          }
+          document.getElementById('listrecurring').insertAdjacentHTML('beforeend', insertedTask[1]);
+        })
+        .catch(error => {
+          console.error('Error: ', error);
+        });
+        newTaskData.append('taskbody', document.getElementById('generatedTask1').textContent);
+        fetch (url, options)
+        .then(response => {
+          return response.json();
+        })
+        .then(insertedTask => {
+          if (recurdays.includes(insertedTask[0])) {
+            document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask[2]);
+          }
+          document.getElementById('listrecurring').insertAdjacentHTML('beforeend', insertedTask[1]);
+        })
+        .catch(error => {
+          console.error('Error: ', error);
+        });
+        newTaskData.append('taskbody', document.getElementById('generatedTask2').textContent);
+        fetch (url, options)
+        .then(response => {
+          return response.json();
+        })
+        .then(insertedTask => {
+          if (recurdays.includes(insertedTask[0])) {
+            document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask[2]);
+          }
+          document.getElementById('listrecurring').insertAdjacentHTML('beforeend', insertedTask[1]);
+        })
+        .catch(error => {
+          console.error('Error: ', error);
+        });
       }
       else {
         const options = {
@@ -180,7 +230,6 @@
 
   function generateTaskFromInput(event) {
     event.preventDefault();
-    console.log('here');
     const url = '/gpt.php';
     let inputtedGoal = new URLSearchParams();
     inputtedGoal.append('goal', document.getElementById('goal').value);
@@ -190,12 +239,20 @@
     };
     fetch(url, options)
     .then(response => {
-      return response.text();
+      return response.json();
     })
     .then(steps => {
-      document.getElementById('generatedTasks').innerHTML = steps;
+      document.getElementById('generatedTask0').innerHTML = steps[0];
+      document.getElementById('generatedTask1').innerHTML = steps[1];
+      document.getElementById('generatedTask2').innerHTML = steps[2];
+      document.getElementById('generatedbutton').style.display = 'block';
     })
     .catch(error => {
       console.error('Error: ', error);
     });
+  }
+
+  function insertGeneratedTasks() {
+    const url = 'add_task.php';
+
   }
