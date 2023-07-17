@@ -54,10 +54,10 @@
           return response.json();
         })
         .then(insertedTask => {
-          if (recurdays.includes(insertedTask[0])) {
-            document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask[2]);
+          if (recurdays.includes(insertedTask.currentDay)) {
+            document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask.nonRecurringBody);
           }
-          document.getElementById('listrecurring').insertAdjacentHTML('beforeend', insertedTask[1]);
+          document.getElementById('listrecurring').insertAdjacentHTML('beforeend', insertedTask.recurringBody);
         })
         .catch(error => {
           console.error('Error: ', error);
@@ -76,10 +76,10 @@
           return response.json();
         })
         .then(insertedTask => {
-          if (recurdays.includes(insertedTask[0])) {
-            document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask[2]);
+          if (recurdays.includes(insertedTask.currentDay)) {
+            document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask.nonRecurringBody);
           }
-          document.getElementById('listrecurring').insertAdjacentHTML('beforeend', insertedTask[1]);
+          document.getElementById('listrecurring').insertAdjacentHTML('beforeend', insertedTask.recurringBody);
         })
         .catch(error => {
           console.error('Error: ', error);
@@ -90,10 +90,10 @@
           return response.json();
         })
         .then(insertedTask => {
-          if (recurdays.includes(insertedTask[0])) {
-            document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask[2]);
+          if (recurdays.includes(insertedTask.currentDay)) {
+            document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask.nonRecurringBody);
           }
-          document.getElementById('listrecurring').insertAdjacentHTML('beforeend', insertedTask[1]);
+          document.getElementById('listrecurring').insertAdjacentHTML('beforeend', insertedTask.recurringBody);
         })
         .catch(error => {
           console.error('Error: ', error);
@@ -104,10 +104,10 @@
           return response.json();
         })
         .then(insertedTask => {
-          if (recurdays.includes(insertedTask[0])) {
-            document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask[2]);
+          if (recurdays.includes(insertedTask.currentDay)) {
+            document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask.nonRecurringBody);
           }
-          document.getElementById('listrecurring').insertAdjacentHTML('beforeend', insertedTask[1]);
+          document.getElementById('listrecurring').insertAdjacentHTML('beforeend', insertedTask.recurringBody);
         })
         .catch(error => {
           console.error('Error: ', error);
@@ -123,7 +123,7 @@
           return response.json();
         })
         .then(insertedTask => {
-          document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask[2]);
+          document.getElementById('todolist').insertAdjacentHTML('beforeend', insertedTask.nonRecurringBody);
         })
         .catch(error => {
           console.error('Error: ', error);
