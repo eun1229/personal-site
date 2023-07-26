@@ -150,3 +150,13 @@
     <p style = 'margin-left: auto'><button onclick = 'deleteRecurringTask($task[taskId], $userId)' class = 'delete', style = 'border: none'>x</button></p>
     </label></li>";
   }
+
+  function displayRecurringTask($allTasks, $selectedId, $userId) {
+    $task = $allTasks[$selectedId];
+    $completedStyle = '';
+    $checked = '';
+    return "<li id = '$task[taskId]recur'><label>
+    <p style = '$completedStyle'>$task[task]</p>
+    <p style = 'margin-left: auto'><button onclick = 'deleteRecurringTask($task[taskId], $userId)' class = 'closenav', style = 'border: none'>x</button></p>
+    </label></li>";
+  }

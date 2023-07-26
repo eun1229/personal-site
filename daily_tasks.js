@@ -11,9 +11,9 @@
   }
 
   function showRecurOptions() {
-    checkbox = document.getElementById("recuroption");
-    label = document.getElementById("recurlabel");
-    options = document.getElementById("recurday");
+    const checkbox = document.getElementById("recuroption");
+    const label = document.getElementById("recurlabel");
+    const options = document.getElementById("recurday");
     if (checkbox.checked == true){
       options.style.display = "block";
       label.style.display = "block";
@@ -176,9 +176,9 @@
   }
 
   function showAllRecurringTasks() {
-    checkbox = document.getElementById("showAllRecurring");
-    recurringlist = document.getElementById("listrecurring");
-    if (checkbox.checked == true){
+    const showCheckbox = document.getElementById("showAllRecurring");
+    const recurringlist = document.getElementById("listrecurring");
+    if (showCheckbox.checked == true){
       recurringlist.style.display = "block";
     }
     else {
@@ -221,7 +221,7 @@
       return response.text();
     })
     .then(updatedRecurringTask => {
-      document.getElementById(taskId.toString().concat('recur')).innerHTML = updatedRecurringTask;
+      document.getElementById(`${taskId}recur`).innerHTML = updatedRecurringTask;
     })
     .catch(error => {
       console.error('Error: ', error);
@@ -254,5 +254,4 @@
 
   function insertGeneratedTasks() {
     const url = 'add_task.php';
-
   }
