@@ -48,7 +48,7 @@
     foreach ($tasks as $task) {
       echo"<li id = '$task[taskId]recur' style = 'list-style-type: none'><label>
       <p >$task[task]</p>
-      <p style = 'margin-left: auto'><button onclick = 'deleteRecurringTask($task[taskId], $userId)' class = 'closenav', style = 'border: none'>x</button></p>
+      <p style = 'margin-left: auto'><button onclick = 'deleteRecurringTask($task[taskId], $userId)' class = 'delete', style = 'border: none'>x</button></p>
       </label></li>";
     }
   }
@@ -57,7 +57,7 @@
     if (checkUser($task_id, $dbName)) {
       db_Query("
       UPDATE $dbName
-      SET completed = 1
+      SET completed = NOT completed
       WHERE taskId = :task_id",
       [
         'task_id' => $task_id,
@@ -122,7 +122,7 @@
       }
       echo "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], $userId)' $checked>
       <p style = '$completedStyle'>$task[task]</p>
-      <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], $userId)' class = 'closenav', style = 'border: none'>x</button></p>
+      <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], $userId)' class = 'delete', style = 'border: none'>x</button></p>
       </label></li>";
     }
   }
@@ -137,7 +137,17 @@
     }
     return "<li id = '$task[taskId]update'><label><input type='checkbox' onclick = 'updateTask($task[taskId], $userId)' $checked>
     <p style = '$completedStyle'>$task[task]</p>
-    <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], $userId)' class = 'closenav', style = 'border: none'>x</button></p>
+    <p style = 'margin-left: auto'><button onclick = 'deleteTask($task[taskId], $userId)' class = 'delete', style = 'border: none'>x</button></p>
+    </label></li>";
+  }
+
+  function displayRecurringTask($allTasks, $selectedId, $userId) {
+    $task = $allTasks[$selectedId];
+    $completedStyle = '';
+    $checked = '';
+    return "<li id = '$task[taskId]recur'><label>
+    <p style = '$completedStyle'>$task[task]</p>
+    <p style = 'margin-left: auto'><button onclick = 'deleteRecurringTask($task[taskId], $userId)' class = 'delete', style = 'border: none'>x</button></p>
     </label></li>";
   }
 
