@@ -16,22 +16,29 @@
     <link rel="stylesheet" href="login_style.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+    <link href="<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Borel&family=Inter:wght@300;400;500&family=Mulish:wght@300;400&display=swap" rel="stylesheet">
     <title>Login</title>
   </head>
   <body>
+    <div style = 'display: flex; justify-content: space-around; align-items: center; height: 100%'>
     <div class = 'loginform'>
       <form action='index.php' method='post'>
-        <p style = 'margin-bottom: 10px'><?php echo $registrationmessage ?></p>
-        <h2>enter login info</h2>
-        <p>email</p>
-        <input type='email' name='email'/> <br/>
-        <p>password</p>
-        <input type='password' name='password'/><br/>
+        <p style = 'margin-bottom: 10px; width: 300px'><?php echo $registrationmessage ?></p>
+        <h2>List</h2>
+        <p style='text-align: left'>email</p>
+        <input type='email' name='email' class='textboxes'/> <br/>
+        <p style='text-align: left'>password</p>
+        <input type='password' name='password' class='textboxes'/><br/>
         <p style = 'margin-bottom: 10px'><?php echo $errormessage ?></p>
-        <input type='submit' name='enter'/>
+        <input type='submit' name='enter' value='Sign In' style='margin-top: 35px'/>
       </form>
-      <a href = signup.php><p>sign up</p></a>
+      <p class="signuptext">Don't have an account yet? <a href = signup.php>sign up</a></p>
+    </div>
     <div>
+      <img src="man with laptop.png">
+    </div>
+    </div>
   </body>
 </html>
