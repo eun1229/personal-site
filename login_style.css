@@ -1,10 +1,85 @@
 h2 {
-  font-size: medium;
+  font-size: 3rem;
+  color: #F5B200;
+  font-family: 'Borel';
 }
 
 p {
-  font-size: small;
+  font-size: 1rem;
+  font-weight: 400;
   margin-bottom: 5px;
+}
+
+nav {
+  position:fixed;
+  font-size: 2.2rem;
+  color: #F5B200;
+  font-family: 'Borel';
+  width: 100%;
+  display: flex;
+  background-color: white;
+  border-bottom: 1px solid #eaeaea;
+  box-shadow: 0 3px 2px -2px #eaeaea;
+}
+
+.signupbody {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.createaccountbutton {
+  margin-top:25px;
+  width: 100%;
+  height: 50px;
+  border-radius: 0.4rem;
+  border: none;
+  background-color: #F5B200;
+  color: white;
+  font-family: 'Mulish';
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+.createaccount {
+  padding-left: 20px; 
+  padding-right: 20px; 
+  padding-top:20px; 
+  margin: 0px; 
+  text-align: center;
+  color: #222525;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 200;
+}
+
+.signupleft{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 150px;
+  width: 50%;
+}
+
+.manpointing {
+  max-width: 100%;
+  flex-grow: 100;
+}
+.signupright {
+  width: 50%;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  overflow: scroll;
+  display: flex;
+  margin-top: 45px;
+}
+
+body {
+  background-color: #FBFAFA;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='1' y2='0' gradientTransform='rotate(5,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%23F5B200'/%3E%3Cstop offset='1' stop-color='%23F5B200'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='0' y1='0' y2='1' gradientTransform='rotate(1,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%23F5B200'/%3E%3Cstop offset='1' stop-color='%23F5B200'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23FFF' fill-opacity='0' stroke-miterlimit='10'%3E%3Cg stroke='url(%23a)' stroke-width='4.949999999999999'%3E%3Cpath transform='translate(-29.4 5.6000000000000005) rotate(3.2 1409 581) scale(1.009904)' d='M1409 581 1450.35 511 1490 581z'/%3E%3Ccircle stroke-width='1.6500000000000001' transform='translate(-21 18) rotate(4.3999999999999995 800 450) scale(1.006992)' cx='500' cy='100' r='40'/%3E%3Cpath transform='translate(13 -45) rotate(43 401 736) scale(1.006992)' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'/%3E%3C/g%3E%3Cg stroke='url(%23b)' stroke-width='1.5'%3E%3Cpath transform='translate(108 -5.2) rotate(1.3 150 345) scale(0.985968)' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'/%3E%3Crect stroke-width='3.3000000000000003' transform='translate(-61 -46) rotate(50.4 1089 759)' x='1039' y='709' width='100' height='100'/%3E%3Cpath transform='translate(-96.8 31.2) rotate(8.4 1400 132) scale(0.99)' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .loginform {
@@ -13,18 +88,28 @@ p {
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: 100vh;
-  font-family: 'Inter', sans-serif;
-  color: #5C394B;
+  font-family: 'Mulish', sans-serif;
+  color: black;
+  padding: 15px 60px 30px;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  box-shadow: 0 4px 25px rgba(0,0,0,.1);
+  height: 500px;
+  background-color: #FBFAFA;
 }
 
 input[type=submit] {
-  background: transparent;
-  color: #5C394B;
-  border-color: #5C394B;
-  border-style: solid;
-  border-width: 1px;
+  color: white;
+  background-color: #2B3E7E;
+  border: none;
+  border-radius: 0.4rem;
+  font: inherit;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  width: 300px;
+  height: 35px; 
 }
+
 
 .signupbutton {
   background: transparent;
@@ -34,6 +119,54 @@ input[type=submit] {
   border-width: 1px;
 }
 
+
+a:link {
+  color: #5C394B;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #5C394B;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.8;
+  color: #5C394B;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  opacity: 0.8;
+  color: black;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.signuptext {
+  opacity: 0.5;
+}
+
+.textboxes{
+  background-color: #f4f4f3;
+  border-width: 1.25px;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0.4rem;
+  caret-color: #005961;
+  color: #1c1c1c;
+  font: inherit;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  width: 300px;
+  height: 35px; 
+}
+
 .signupform {
   display: flex;
   flex-direction: column;
@@ -41,7 +174,7 @@ input[type=submit] {
   align-items: center;
   text-align: center;
   min-height: 100vh;
-  font-family: 'Inter', sans-serif;
-  gap: 5px;
-  color: #5C394B;
+  font-family: 'Mulish', sans-serif;
+  color: black;
+  row-gap: 1rem;
 }
