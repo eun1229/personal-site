@@ -373,7 +373,3 @@
     ") -> fetchAll();
   }
 
-  function convertIndexToDay() {
-
-  }
-
