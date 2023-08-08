@@ -7,11 +7,13 @@
     $PLANETSCALEDB = getenv("PLANETSCALEDB");
 
 	if($PLANETSCALEDB){		
+		$DbUrl = parse_url($PLANETSCALE_DATABASE_URL);
+		
 		//These are your consts for your heroku env
-		$DbServer = getenv("DB_HOST");
-		$DbUser = getenv("DB_USER");
-		$DbPassword = getenv("DB_PASS");
-		$DbName = getenv("DB_NAME");
+		$DbServer = $DbUrl["host"];
+		$DbUser = $DbUrl["user"];
+		$DbPassword = $DbUrl["pass"];
+		$DbName = substr($DbUrl["path"], 1);
 	} else {
 		$DbServer = DB_HOSTNAME;
 		$DbUser = DB_USERNAME;
