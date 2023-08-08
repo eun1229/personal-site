@@ -4,16 +4,14 @@
     DEFINE('DB_USERNAME', 'root');
     DEFINE('DB_PASSWORD', 'root');
 
-    $HerokuDatabaseUrl = getenv("CLEARDB_DATABASE_URL");
+    $PLANETSCALEDB = getenv("PLANETSCALEDB");
 
-	if($HerokuDatabaseUrl){
-		$DbUrl = parse_url($HerokuDatabaseUrl);
-		
+	if($PLANETSCALEDB){		
 		//These are your consts for your heroku env
-		$DbServer = $DbUrl["host"];
-		$DbUser = $DbUrl["user"];
-		$DbPassword = $DbUrl["pass"];
-		$DbName = substr($DbUrl["path"], 1);
+		$DbServer = getenv("DB_HOST");
+		$DbUser = getenv("DB_USER");
+		$DbPassword = getenv("DB_PASS");
+		$DbName = getenv("DB_NAME");
 	} else {
 		$DbServer = DB_HOSTNAME;
 		$DbUser = DB_USERNAME;
