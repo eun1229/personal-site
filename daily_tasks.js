@@ -445,3 +445,4 @@
     document.getElementById('generategoalnav').style.borderRight = 'none';
     document.getElementById('todaystasknav').style.borderRight = 'none';
     document.getElementById('currentgoalnav').style.borderRight = '4px solid #2B3E7E';
+  }
