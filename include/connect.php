@@ -28,7 +28,7 @@
 	);
 	$pdo = new PDO($dsn, $DbUser, $DbPassword, $opt);   	
 	
-	function dbQuery($query, $values=array()){
+	function db_Query($query, $values=array()){
 	  global $pdo;
 	
 	  $stmt = $pdo->prepare($query);
